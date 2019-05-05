@@ -1,0 +1,17 @@
+{
+    "name": "pxt-display",
+    "version": "1.0",
+    "description": "Utility functions for the Micro:bit display",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "display.ts"
+    ],
+    "testFiles": [
+        "tests.ts"
+    ],
+    "public": true
+}
