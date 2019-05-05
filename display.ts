@@ -28,7 +28,7 @@ namespace Display {
         // This covers the range from 0-25
         basic.clearScreen()
         for (let draw: number = 0; draw < leds; draw++) {
-            led.plot(draw - Math.floor(draw / 5) * 5, 4 - draw / 5)
+            led.plot(draw - Math.floor(draw / 5) * 5, 4 - Math.floor(draw / 5))
         }
 
         if (leds > 24) {
@@ -47,8 +47,9 @@ namespace Display {
         }
     }
 
-	
-    let lastValue = 0
+    // Ensure that we always clear the screen on the first execution
+    let lastValue = 100
+
     /**
      * Display a radio signal level on the LED display
      * @param signal the radio signal level
@@ -61,12 +62,14 @@ namespace Display {
         }
 
         lastValue = value
-        
+
+        // x is remainder after dividing by 5
+        // y is floor(divide by 5), "4 -" reverses the direction
         for (let draw: number = 0; draw < value; draw++) {
-            led.plot(draw - Math.floor(draw / 5) * 5, 4 - draw / 5)
+            led.plot(draw - Math.floor(draw / 5) * 5, 4 - Math.floor(draw / 5))
         }
     }
-	
+
     /**
      * Display a directional line on the display
      * @param direction the direction to draw the line
@@ -78,13 +81,13 @@ namespace Display {
         let xData = [2, 3, 4, 4, 4, 4, 4, 3, 2, 1, 0, 0, 0, 0, 0, 1]
         let yData = [0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 3, 2, 1, 0, 0]
 
-        let x : number = xData[direction]
-        let y : number = yData[direction]
+        let x: number = xData[direction]
+        let y: number = yData[direction]
 
         basic.clearScreen()
 
         // Centre
-        led.plotBrightness(2,2, 255);
+        led.plotBrightness(2, 2, 255);
 
         // Intermediate
         let xI = (x + 2) / 2
