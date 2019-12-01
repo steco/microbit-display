@@ -6,6 +6,21 @@ basic.pause(500)
 display.drawArrow(8)
 basic.pause(500)
 
+// Draw a north-west arrow
+display.drawArrow(15.6)
+basic.pause(500)
+
+// Draw a dot for invalid parameters
+display.drawArrow(-1)
+basic.pause(200)
+basic.clearScreen()
+basic.pause(200)
+
+display.drawArrow(20)
+basic.pause(200)
+basic.clearScreen()
+basic.pause(200)
+
 // Slowly increase and decrease the number being displayed
 for (let i: number = 0; i < 51; ++i) {
     let j: number = i < 25 ? i : 50 - i

@@ -54,25 +54,28 @@ namespace display {
      */
     //% block
     export function drawArrow(direction: number) {
-
         let xData = [2, 3, 4, 4, 4, 4, 4, 3, 2, 1, 0, 0, 0, 0, 0, 1]
         let yData = [0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 3, 2, 1, 0, 0]
-
-        let x: number = xData[direction]
-        let y: number = yData[direction]
 
         basic.clearScreen()
 
         // Centre
         led.plotBrightness(2, 2, 255);
 
-        // Intermediate
-        let xI = (x + 2) / 2
-        let yI = (y + 2) / 2
+        if ((direction >= 0) && (direction < 16)) {
+            direction = Math.trunc(direction)
 
-        led.plotBrightness(xI, yI, 255)
+            let x: number = xData[direction]
+            let y: number = yData[direction]
 
-        // Edge
-        led.plotBrightness(x, y, 255)
+            // Intermediate
+            let xI = (x + 2) / 2
+            let yI = (y + 2) / 2
+
+            led.plotBrightness(xI, yI, 255)
+
+            // Edge
+            led.plotBrightness(x, y, 255)
+        }
     }
 }
