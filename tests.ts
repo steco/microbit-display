@@ -34,9 +34,12 @@ for (let signalStrength: number = -128; signalStrength < -46; ++signalStrength) 
     basic.pause(10)
 }
 
+// Encoding/decoding images
 basic.showIcon(IconNames.Heart)
 
-//Regular image
+let strDiamond: string = display.encodeImage(images.iconImage(IconNames.Diamond))
+let diamond: Image = display.decodeImage(strDiamond)
+
 let strImage = `
 * * . . .
 . . . . .
@@ -61,6 +64,8 @@ let tooLong = display.decodeImage(strToolong)
 let strInvalid = "hello"
 let invalid = display.decodeImage(strInvalid)
 
+diamond.showImage(0)
+basic.pause(250)
 image.showImage(0)
 basic.pause(250)
 tooShort.showImage(0)

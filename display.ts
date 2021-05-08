@@ -80,6 +80,24 @@ namespace display {
     }
 
     /**
+     * Encode an Image to a string
+     */
+    //% block
+    export function encodeImage(image: Image): string {
+        let result = ""
+
+        for(let y: number = 0; y < 5; ++y)
+        {
+            for(let x: number = 0; x < 5; ++x)
+            {
+                result += image.pixel(x, y) ? "*" : "."
+            }
+        }
+
+        return result
+    }
+
+    /**
      * Convert an image encoded in a string to an actual Image
      * images.createImage should do this, but appears to be hard-coded to only 
      * accept strings that the compiler can confirm are real images
@@ -99,9 +117,9 @@ namespace display {
         basic.clearScreen()
 
         // Now display the image encoded in str and take a screenshot of it
-        for(let i: number = 0; i < 25; ++i)
+        for(let i: number = 0; i < Math.min(25, str.length); ++i)
         {
-            if(enableCharacters.includes(str.charAt(Math.min(i, str.length))))
+            if(enableCharacters.includes(str.charAt(i)))
             {
                 led.plot(i - Math.floor(i / 5) * 5, Math.floor(i / 5))
             }
