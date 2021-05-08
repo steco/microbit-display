@@ -34,5 +34,39 @@ for (let signalStrength: number = -128; signalStrength < -46; ++signalStrength) 
     basic.pause(10)
 }
 
+basic.showIcon(IconNames.Heart)
+
+//Regular image
+let strImage = `
+* * . . .
+. . . . .
+. . # . .
+. . . . .
+. . . . *
+`
+let image = display.decodeImage(strImage)
+
+let strTooShort = `* * .  *`
+let tooShort = display.decodeImage(strTooShort)
+
+let strToolong = `
+* * . . .
+. . . . .
+. . # . .
+. . . . .
+. . . . * * * * *
+`
+let tooLong = display.decodeImage(strToolong)
+
+let strInvalid = "hello"
+let invalid = display.decodeImage(strInvalid)
+
+image.showImage(0)
+basic.pause(250)
+tooShort.showImage(0)
+basic.pause(250)
+tooLong.showImage(0)
+basic.pause(250)
+
 // Done!
 basic.clearScreen()

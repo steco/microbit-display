@@ -78,4 +78,40 @@ namespace display {
             led.plotBrightness(x, y, 255)
         }
     }
+
+    /**
+     * Convert an image encoded in a string to an actual Image
+     * images.createImage should do this, but appears to be hard-coded to only 
+     * accept strings that the compiler can confirm are real images
+     */
+    //% block
+    export function decodeImage(str: string): Image {
+        // We'll need to use the Microbit's screen
+        // (far from ideal but I can't work out any better way)
+        let enableCharacters: string = "1#*"
+
+        // Remove extraneous characters
+        str = str.replaceAll(" ", "")
+        str = str.replaceAll("\n", "")
+
+        // First keep what's on the screen so we can restore it afterwards
+        let existingDisplay: Image = led.screenshot()
+        basic.clearScreen()
+
+        // Now display the image encoded in str and take a screenshot of it
+        for(let i: number = 0; i < 25; ++i)
+        {
+            if(enableCharacters.includes(str.charAt(Math.min(i, str.length))))
+            {
+                led.plot(i - Math.floor(i / 5) * 5, Math.floor(i / 5))
+            }
+        }
+
+        let image: Image = led.screenshot()
+
+        // Finally restore the screen
+        existingDisplay.showImage(0)
+
+        return image
+    }
 }
