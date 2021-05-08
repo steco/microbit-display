@@ -29,8 +29,8 @@ namespace display {
     let lastValue = 100
 
     /**
-     * Display a number from 0-25 on the LED display
-     * @param value the number to show
+     * Switches on the number of leds specified in the parameter
+     * @param value the number of leds to switch on
      */
     //% block
     export function show(value: number) {
